@@ -1,0 +1,92 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 39,
+  "modules-left": ["niri/workspaces", "clock"],
+  "modules-center": ["mpris"],
+  "modules-right": [
+    "temperature",
+    "custom/power_profile",
+    "custom/recorder",
+    "custom/night",
+    "battery",
+    "custom/powerDraw",
+    "wireplumber",
+    "tray",
+  ],
+  "niri/window": {
+    "format": "{}",
+  },
+  "wireplumber": {
+    "format": "{volume}",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10,
+  },
+  "custom/recorder": {
+    "format": "{}",
+    "interval": 1,
+    "exec": "pgrep -x wf-recorder > /dev/null && echo '󰑊' || echo '󰐊'",
+    "on-click": "~/.local/bin/record",
+    "tooltip": false,
+  },
+
+  "mpris": {
+    "format": "{dynamic}",
+    "format-paused": "<i>{dynamic}</i>",
+    "dynamic-order": ["title"],
+  },
+  "custom/night": {
+    "format": "{}",
+    "interval": 1,
+    "exec": "pgrep -x wlsunset > /dev/null && echo '⚛' || echo '✵'",
+    "on-click": "~/.local/bin/nightlight",
+    "tooltip": false,
+  },
+  "clock": {
+    "format": "{:%A, %B %d (%R)}",
+    "format-alt": "{:%H:%M} ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "left",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+    },
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 80,
+      "critical": 70,
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+  "custom/powerDraw": {
+    "format": "{}",
+    "interval": 1,
+    "exec": "~/.config/waybar/scripts/powerdraw.sh",
+    "return-type": "json",
+  },
+}
