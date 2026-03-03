@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on   = "l"
+run  = "shell -- swww img %h --transition-type center"
+desc = "Set wallpaper"

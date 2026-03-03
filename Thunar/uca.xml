@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1772120172183760-1</unique-id>
+	<command>kitty -d %f</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>appimagekit-love</icon>
+	<name>Set As Wallpaper</name>
+	<submenu></submenu>
+	<unique-id>1772292296442573-1</unique-id>
+	<command>swww img %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>appimagekit-videomass</icon>
+	<name>Re-Encode Video</name>
+	<submenu></submenu>
+	<unique-id>1772367848490044-1</unique-id>
+	<command>ffmpeg -init_hw_device vaapi=va:/dev/dri/renderD128 -init_hw_device qsv=qs@va -i %f -c:v h264_qsv %d/%n.mp4 -r 30</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<video-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Test</name>
+	<submenu>FFMPEG</submenu>
+	<unique-id>1772472403116327-1</unique-id>
+	<command>ffmpeg -i %f oo.mp3</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<audio-files/>
+</action>
+</actions>
