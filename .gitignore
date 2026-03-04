@@ -27,3 +27,11 @@
 /lazygit
 /assets
 /QtProject.conf
+/zed
+/xarchiver
+/vicinae
+/systemd/user/graphical-session.target.wants
+/mozilla/firefox/Crash Reports
+/kdeconnect
+/btop
+/browsh

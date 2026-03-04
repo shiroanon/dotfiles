@@ -7,7 +7,7 @@ binds {
     Mod+Space hotkey-overlay-title="Run an Application: tofi" { spawn "tofi-drun" "--drun-launch=true"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+E {spawn "thunar";}
-
+    Mod+N {spawn "swaync-client"  "-t";}
 
     XF86Display allow-when-locked=true hotkey-overlay-title=null { spawn-sh "~/.local/bin/record"; }
 
