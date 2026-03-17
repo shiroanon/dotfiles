@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profile>
+ <version>LibreOffice v1</version>
+ <device>
+  <type>opencl</type>
+  <name>NVIDIA GeForce MX250</name>
+  <driver>580.126.18</driver>
+  <time>111441</time>
+  <errors>false</errors>
+ </device>
+ <device>
+  <type>native</type>
+  <time>2396160</time>
+  <errors>false</errors>
+ </device>
+</profile>
