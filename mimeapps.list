@@ -17,12 +17,14 @@ application/x-extension-xht=zen.desktop
 inode/directory=thunar.desktop
 image=feh.desktop
 image/png=feh.desktop
+application/x-partial-download=mpv.desktop
+application/octet-stream=mpv.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;
 x-scheme-handler/https=zen.desktop;
 x-scheme-handler/chrome=zen.desktop;
-text/html=zen.desktop;
+text/html=dev.zed.Zed.desktop;zen.desktop;
 application/x-extension-htm=zen.desktop;
 application/x-extension-html=zen.desktop;
 application/x-extension-shtml=zen.desktop;
@@ -31,3 +33,11 @@ application/x-extension-xhtml=zen.desktop;
 application/x-extension-xht=zen.desktop;
 application/schema+json=dev.zed.Zed.desktop;
 application/pdf=zen.desktop;
+video/ogg=mpv.desktop;
+audio/ogg=mpv.desktop;
+application/x-partial-download=mpv.desktop;
+application/x-shellscript=dev.zed.Zed.desktop;kitty-open.desktop;
+application/octet-stream=mpv.desktop;
+text/x-c++src=dev.zed.Zed.desktop;
+video/mp4=mpv.desktop;org.shotcut.Shotcut.desktop;
+text/plain=dev.zed.Zed.desktop;libreoffice-writer.desktop;gimp.desktop;

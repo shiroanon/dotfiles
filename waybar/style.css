@@ -82,7 +82,9 @@ tooltip {
 #temperature,
 #tray,
 #custom-powerDraw,
-#custom-logo {
+#custom-logo,
+#bluetooth,
+#niri\/workspaces {
     background: @base;
     opacity: 1;
     padding: 0px 10px;
@@ -127,6 +129,18 @@ tooltip {
     color: @green;
     margin-right: 0px;
     border-left: 0px;
+}
+
+#bluetooth {
+    color: @blue;
+    border-left: 0px;
+    border-right: 0px;
+    padding-right: 8px;
+}
+
+#niri\/workspaces {
+    border-radius: 20px 0 0 20px;
+    margin-left: 5px;
 }
 
 /* --- The Grouped Left/Right Blocks --- */

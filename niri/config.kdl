@@ -87,7 +87,7 @@ hotkey-overlay {
 prefer-no-csd
 
 
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d/%H-%M-%S.png"
 
 include "shiro/binds.kdl"
 include "shiro/windowrules.kdl"
