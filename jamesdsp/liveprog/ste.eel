@@ -1,0 +1,40 @@
+desc: Stereo Rotator & Widener
+//width:3<0,6,0.1>Stereo Width 
+//slider2:1.69<0,6,0.1>Stereo Width
+
+@init
+// Ensure buffers are clean
+lx1=lx2=ly1=ly2=rx1=rx2=ry1=ry2=0;
+
+@sample
+// 1. Assign Sliders
+// Some JamesDSP versions prefer direct slider indexing
+rot_deg = slider1;
+width_val = slider2;
+
+// 2. Rotation Math
+// Convert degrees to radians (PI / 180)
+angle = rot_deg * 0.0174532925;
+cos_c = cos(angle);
+sin_c = sin(angle);
+
+// Input Samples
+inL = spl0;
+inR = spl1;
+
+// Matrix Rotation
+// out_left  = in_left * cos - in_right * sin
+// out_right = in_left * sin + in_right * cos
+rotL = (inL * cos_c) - (inR * sin_c);
+rotR = (inL * sin_c) + (inR * cos_c);
+
+// 3. Stereo Widener Logic
+// Derived from your M/S transformation:
+coef_S = width_val * 0.5;
+
+mid = (rotL + rotR) * 0.5;
+side = (rotR - rotL) * coef_S;
+
+// Reconstruct Stereo Field
+spl0 = mid - side;
+spl1 = mid + side;

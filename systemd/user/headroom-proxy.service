@@ -1,0 +1,28 @@
+# /home/shiro/.config/systemd/user/headroom-proxy.service
+# Transparent HTTP proxy in front of the LLM provider.
+# headroom-ai 0.23.0 — kompress-small ONNX + SmartCrusher + CacheAligner.
+# Start:  systemctl --user enable --now headroom-proxy
+# Logs:   journalctl --user -u headroom-proxy -f
+# Health:  curl -s http://127.0.0.1:8787/health
+
+[Unit]
+Description=headroom-ai context-compression proxy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/home/shiro/bin/headroom-proxy
+Restart=on-failure
+RestartSec=5
+KillMode=control-group
+TimeoutStopSec=30
+
+# Environment
+Environment=HOME=/home/shiro
+Environment=PATH=/home/shiro/.venv/bin:/usr/local/bin:/usr/bin:/bin
+# Headroom will auto-download kompress-small (~279 MB) on first text hit;
+# cached at ~/.cache/huggingface/hub/ — no manual step needed.
+
+[Install]
+WantedBy=default.target

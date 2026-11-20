@@ -1,0 +1,12 @@
+[Unit]
+Description=niri smart window daemon (mpv fixed size via niri IPC)
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/Projects/niri_things/smartd.py --monitor
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
