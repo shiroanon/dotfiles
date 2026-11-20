@@ -1,97 +1,44 @@
-/*
-     _     _                              __ _
- ___| |__ (_)_ __ ___     ___ ___  _ __  / _(_) __ _ ___
-/ __| '_ \| | '__/ _ \   / __/ _ \| '_ \| |_| |/ _` / __|
-\__ \ | | | | | | (_) | | (_| (_) | | | |  _| | (_| \__ \
-|___/_| |_|_|_|  \___/   \___\___/|_| |_|_| |_|\__, |___/
-                                               |___/
-*/
 input {
-
-    keyboard {
-
-        // Enable numlock on startup, omitting this setting disables it.
-        numlock
-    }
-
-    // Next sections include libinput settings.
-    // Omitting settings disables them, or leaves them at their default values.
-    // All commented-out settings here are examples, not defaults.
-    touchpad {
-        // off
-        tap
-        // dwt
-        // dwtp
-        //drag true
-        // drag-lock
-        natural-scroll
-        accel-speed 0.3
-        // accel-profile "flat"
-        // scroll-method "two-finger"
-        // disabled-on-external-mouse
-    }
-
-    mouse {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "no-scroll"
-    }
-
-
-
-    trackpoint {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "on-button-down"
-        // scroll-button 273
-        // scroll-button-lock
-        // middle-emulation
-    }
-
-    // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
-
-    // Focus windows and outputs automatically when moving the mouse into them.
-    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+	keyboard {
+		numlock
+	}
+	touchpad {
+		tap
+		natural-scroll
+		accel-speed 0.3
+	}
+	mouse
+	trackpoint
 }
-
-
-
+cursor {
+	xcursor-size 35
+}
+layer-rule {
+    match namespace="^awww-daemon$"
+    place-within-backdrop true
+}
 output "eDP-1" {
-    // Uncomment this line to disable this output.
-    // off
-    mode "1920x1080@59.96"
-    scale 1
-
-
-    transform "normal"
-
-
-    position x=1280 y=0
+	// No explicit mode: the panel's only non-refresh-locked mode is the
+	// preferred 1920x1080@60.008. The old "1920x1080@59.96" never existed
+	// and was silently fuzzy-matched.
+	scale 1
+	position x=0 y=0
 }
-
-
-
-
+output "HDMI-A-2" {
+    // Secondary external monitor
+    mode "1920x1080@60.000" // Match exact resolution and refresh rate from niri msg outputs
+    scale 1.0
+    position x=1920 y=0      // Place to the right of eDP-1 (accounting for primary width)
+    // transform "normal"    // Optional: use "90", "180", "270", or "flipped" if rotated
+}
 hotkey-overlay {
-    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    skip-at-startup
+	skip-at-startup
 }
-
-
 prefer-no-csd
-
-
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d/%H-%M-%S.png"
-
+screenshot-path "~/Pictures/Screenshots/%m-%d/%H-%M-%S.png"
+include "shiro/environments.kdl"
 include "shiro/binds.kdl"
 include "shiro/windowrules.kdl"
 include "shiro/startup.kdl"
 include "shiro/animations.kdl"
 include "shiro/layout.kdl"
-//include "shiro/workspaces.kdl"

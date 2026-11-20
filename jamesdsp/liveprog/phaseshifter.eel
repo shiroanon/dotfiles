@@ -9,9 +9,9 @@ author: @thepbone
 //phaserFb:0.7<0,0.99>Feedback
 
 @init
-minFreq = 440;
-maxFreq = 1600;
-phaserRate = 0.5;
+minFreq = 10.00;
+maxFreq = 11065.89;
+phaserRate = 0.46;
 phaserDepth = 1;
 phaserFb = 0.7;
 

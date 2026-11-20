@@ -12,42 +12,29 @@
 * {
     border: none;
     border-radius: 0px;
-    font-family: "JetBrainsMono Nerd Font";
+    font-family: "Marko One";
     font-weight: bold;
     font-size: 15px;
-    min-height: 0;
+    margin-bottom: 0px;
+    background-color: rgba(0, 0, 0, 0);
     transition: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-window#waybar {
-    background: rgba(21, 18, 27, 0);
-    color: @text;
-}
-
-tooltip {
-    background: @base;
-    border-radius: 10px;
-    border: 1.5px solid @mantle;
-    transition: 0.3s;
-}
-
-/* --- Workspaces --- */
-#workspaces {
-    background: @base;
-    margin-left: 0px;
-    padding-left: 5px;
-    padding-right: 0px;
-    border: 1px solid black;
-}
-
 #workspaces button {
-    padding: 4px;
+    padding: 1px;
     color: @surface;
     margin-right: 5px;
 }
+tooltip {
+    background: rgba(40, 42, 54, 0.5);
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid #6272a4;
+}
 #mpris {
-    background: @base;
-    margin-top: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    margin-left: 0px;
     padding: 0px 10px 0px 10px;
     border-radius: 20px;
     padding-right: 20px;
@@ -73,7 +60,6 @@ tooltip {
     border-radius: 20px;
 }
 
-#window,
 #clock,
 #battery,
 #wireplumber,
@@ -82,21 +68,13 @@ tooltip {
 #temperature,
 #tray,
 #custom-powerDraw,
-#custom-logo,
 #bluetooth,
 #niri\/workspaces {
-    background: @base;
+    background: rgba(0, 0, 0, 0.5);
     opacity: 1;
-    padding: 0px 10px;
-    margin: 5px 0 0 0;
-    border: 1px solid black;
-}
-
-/* --- Specific Module Tweaks --- */
-#window {
-    border-radius: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
+    padding: 9px 10px;
+    margin: 0px 0 0 0;
+    border: 0px solid black;
 }
 
 #temperature {
@@ -107,14 +85,9 @@ tooltip {
     color: @red;
 }
 
-#backlight {
-    border-radius: 20px 0px 0px 20px;
-    padding-left: 7px;
-}
-
 #tray {
-    border-radius: 0 20px 20px 0;
-    margin-right: 5px;
+    border-radius: 0px;
+    margin-right: 0px;
     padding: 0px 12px;
 }
 
@@ -136,20 +109,6 @@ tooltip {
     border-left: 0px;
     border-right: 0px;
     padding-right: 8px;
-}
-
-#niri\/workspaces {
-    border-radius: 20px 0 0 20px;
-    margin-left: 5px;
-}
-
-/* --- The Grouped Left/Right Blocks --- */
-#custom-logo {
-    color: @pink;
-    border-radius: 20px 0 0 20px;
-    margin-left: 5px;
-    margin-right: 0px;
-    border-left: 5px; /* Keeping your specific 5px border-left */
 }
 
 #custom-powerDraw {

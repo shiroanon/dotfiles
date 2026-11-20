@@ -33,13 +33,13 @@ dSideGainY:0<0,100,1>Filter 2 Side gain
 //("Unknown Type IV",           ({800 ,6200,80,140,0 ,0 }))
 
 @init
-dBassGain = 100;
-dX1 = 140;
-dX2 = 6200;
-dSideGainX = 0;
-dY1 = 80;
-dY2 = 373;
-dSideGainY = 37;
+dBassGain = 32;
+dX1 = 1354;
+dX2 = 6000;
+dSideGainX = 10;
+dY1 = 110;
+dY2 = 299;
+dSideGainY = 0;
 
 function LowPassFilter_Set(frequency qFactor)(
     x = (frequency * 2.f * $PI) / srate;

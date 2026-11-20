@@ -17,7 +17,7 @@
 	<name>Set As Wallpaper</name>
 	<submenu></submenu>
 	<unique-id>1772292296442573-1</unique-id>
-	<command>swww img %f</command>
+	<command>awww img %f </command>
 	<description></description>
 	<range>*</range>
 	<patterns>*</patterns>
@@ -28,7 +28,7 @@
 	<name>Re-Encode Video</name>
 	<submenu></submenu>
 	<unique-id>1772367848490044-1</unique-id>
-	<command>ffmpeg -init_hw_device vaapi=va:/dev/dri/renderD128 -init_hw_device qsv=qs@va -i %f -c:v h264_qsv %d/%n.mp4 -r 30</command>
+	<command>ffmpeg -init_hw_device vaapi=va:/dev/dri/renderD128 -init_hw_device qsv=qs@va -i %f -c:v h264_qsv %d/%n.mp4 -r 60</command>
 	<description></description>
 	<range>*</range>
 	<patterns>*</patterns>
@@ -37,13 +37,57 @@
 </action>
 <action>
 	<icon></icon>
-	<name>Test</name>
+	<name>Combine</name>
 	<submenu>FFMPEG</submenu>
 	<unique-id>1772472403116327-1</unique-id>
-	<command>ffmpeg -i %f oo.mp3</command>
+	<command>/home/shiro/Downloads/stich.sh  -i %F -o %d/oo.mp4</command>
 	<description></description>
 	<range>*</range>
 	<patterns>*</patterns>
-	<audio-files/>
+	<video-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Mark As Executable</name>
+	<submenu></submenu>
+	<unique-id>1772657183349953-1</unique-id>
+	<command>chmod +x %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Open Folder In MPV</name>
+	<submenu></submenu>
+	<unique-id>1773869898264098-1</unique-id>
+	<command>mpv %f --shuffle </command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Open In Zed</name>
+	<submenu></submenu>
+	<unique-id>1791993789607019-1</unique-id>
+	<command>zeditor %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Opencode Open</name>
+	<submenu></submenu>
+	<unique-id>1791993974997803-2</unique-id>
+	<command>kitty -d %f opencode</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
 </action>
 </actions>

@@ -1,31 +1,66 @@
+window-rule {
+	geometry-corner-radius 5
+	clip-to-geometry false
+	default-column-width
+    open-focused true
+
+
+}
+// Place this inside your ~/.config/niri/config.kdl
+window-rule {
+    // Target your specific app (e.g., alacritty running a clock script, or an overlay)
+    match title="SimpMusic - Mini Player"
+
+        open-floating true
+        geometry-corner-radius 12
+
+    }
+
 
 window-rule {
-    geometry-corner-radius 12.0
-    clip-to-geometry true
+	match app-id="^org\\.keepassxc\\.KeePassXC$"
+	match app-id="^org\\.gnome\\.World\\.Secrets$"
+	block-out-from "screen-capture"
+}
+window-rule {
+	match app-id="^dev\\.zed\\.Zed$"
+	open-on-workspace "⚡"
+}
+blur {
+    offset 3
+    noise 0.02
+    saturation 1.5
 }
 
 window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+	match app-id="^kitty$"
+	default-column-width
+	background-effect {
+		blur true
+		noise 0.08
+	}
 
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
 }
 window-rule {
-    match app-id="kitty"
-    default-column-width {}
+	match app-id="^firefox$" title="^Picture-in-Picture$"
+	open-floating true
 }
-
 window-rule {
-
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+	match title="Organise Download"
+	open-floating true
+}
+window-rule {
+    // Birth facts only: smartd owns sizing (see rules.toml). Setting a
+    // fixed default size here too would give two sources of truth.
+    match app-id="^mpv$"
+    match title="^.*mpv$"
     open-floating true
 }
-window-rule{
-    match app-id="mpv"
-    default-column-width { fixed 100; }
-    open-floating true
-    default-window-height { fixed 150; }
+window-rule {
+	match title="^Rename.*"
+	open-floating true
+}
+window-rule {
+    match app-id="^flameshot.*$"
+	open-floating true
 }

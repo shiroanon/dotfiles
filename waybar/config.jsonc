@@ -1,12 +1,13 @@
 {
   "layer": "top",
+  "reload_style_on_change": true,
   "position": "top",
   "mod": "dock",
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
   "height": 39,
-  "modules-left": ["niri/workspaces", "clock"],
+  "modules-left": ["clock"],
   "modules-center": ["mpris"],
   "modules-right": [
     "temperature",
@@ -28,7 +29,7 @@
   },
   "tray": {
     "icon-size": 18,
-    "spacing": 10,
+    "spacing": 12,
   },
   "bluetooth": {
     // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
@@ -43,7 +44,7 @@
   "custom/recorder": {
     "format": "{}",
     "interval": 1,
-    "exec": "pgrep -x wf-recorder > /dev/null && echo '󰑊' || echo '󰐊'",
+    "exec": "pgrep -x wf-recorder > /dev/null && echo '󰑊 ON' || echo '󰐊 R'",
     "on-click": "~/.local/bin/record",
     "tooltip": false,
   },
@@ -85,8 +86,8 @@
   "battery": {
     "states": {
       "good": 95,
-      "warning": 80,
-      "critical": 70,
+      "warning": 20,
+      "critical": 10,
     },
     "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",

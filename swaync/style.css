@@ -1,295 +1,528 @@
-/* Dracula Theme */
-@define-color foreground rgb(248, 248, 242);
-@define-color background rgb(40, 42, 54);
-@define-color background-alpha rgba(40, 42, 54, 0.8);
-@define-color accent rgba(189, 147, 249, 0.8);
-@define-color current-line rgb(68, 71, 90);
-@define-color comment rgb(98, 114, 164);
+/* ==============================================================
+   swaync  —  design language borrowed from ~/.config/waybar/style.css
+
+   waybar gives us: a Catppuccin-flavoured palette, pill-shaped
+   translucent-black chips, Marko One as the display face, and a
+   colour-per-role convention (pink = clock, blue = audio,
+   green = battery, red = critical).
+
+   This sheet reuses all four.
+
+   NOTE: config.json sets cssPriority:"user", so this file replaces
+   swaync's default stylesheet entirely — every class below is styled
+   here on purpose. Selectors match swaync 0.12.x's widget tree.
+   ============================================================== */
+
+/* ---------- palette (kept in sync with waybar/style.css) ------- */
+@define-color base     #1e1e2e;
+@define-color mantle   #11111b;
+@define-color text     #cdd6f4;
+@define-color subtext  #a6adc8;
+@define-color surface  #313244;
+@define-color blue     #89b4fa;
+@define-color green    #a6e3a1;
+@define-color pink     #f5c2e7;
+@define-color red      #f38ba8;
+
+/* ---------- colour roles ------------------------------------- */
+@define-color accent-time   @pink;   /* #clock, #custom-powerDraw */
+@define-color accent-media  @blue;   /* #wireplumber, #bluetooth   */
+@define-color accent-power  @green;  /* #battery                    */
+
+/* ---------- surfaces ----------------------------------------- */
+@define-color panel      alpha(@mantle, 0.94);
+@define-color card       alpha(@surface, 0.38);
+@define-color card-edge  alpha(@surface, 0.75);
+@define-color wash       alpha(@text, 0.09);
+@define-color hairline   alpha(@text, 0.12);
+
+/* ink ramp — body text sits well above 4.5:1 on @card */
+@define-color ink-strong  @text;
+@define-color ink-body    alpha(@text, 0.82);
+@define-color ink-muted   alpha(@text, 0.58);
+
+/* ---------- shape + motion ------------------------------------ */
+@define-color r-panel 32px;
+@define-color r-card  24px;
+@define-color r-pill  22px;
+@define-color r-round 999px;
+@define-color ease     cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+/* ==============================================================
+   base — never `all: unset` here; it strips sizing off the
+   built-in widgets and they render at unstyled defaults.
+   ============================================================== */
+
+notificationwindow,
+blankwindow,
+.floating-notifications,
+.blank-window {
+    background: transparent;
+    font-family: "Noto Sans";
+    font-size: 14px;
+    color: @ink-strong;
+}
+
+label {
+    background: transparent;
+    color: @ink-strong;
+}
+
+/* ==============================================================
+   control centre shell
+   ============================================================== */
+
+.control-center {
+    background: @panel;
+    color: @ink-strong;
+    border: 1px solid @hairline;
+    border-radius: @r-panel;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    margin: 10px;
+    padding: 16px;
+}
+
+.control-center .control-center-list {
+    background: transparent;
+    border-radius: @r-card;
+}
+
+.control-center .control-center-list-placeholder {
+    color: @ink-muted;
+    opacity: 0.7;
+}
+
+/* ==============================================================
+   widgets
+   ============================================================== */
+
+.widget {
+    margin: 0 0 10px 0;
+    padding: 0;
+    background: transparent;
+    border-radius: @r-card;
+}
+
+/* ---------- title + clear-all --------------------------------- */
+
+.widget-title {
+    padding: 0 2px 12px 2px;
+}
+
+.widget-title > label {
+    font-family: "Marko One";
+    font-size: 15px;
+    color: @accent-time;
+    letter-spacing: 1px;
+    margin-right: 8px;
+    text-shadow: none;
+}
+
+.widget-title > button {
+    margin-left: 8px;
+    background: @card;
+    color: @ink-body;
+    border: 1px solid transparent;
+    border-radius: @r-pill;
+    font-size: 14px;
+    padding: 4px 14px;
+    transition: background-color 180ms @ease, color 180ms @ease;
+}
+
+.widget-title > button:hover {
+    background: @wash;
+    color: @text;
+    border-color: @card-edge;
+}
+
+.widget-title > button:active {
+    background: @accent-time;
+    color: @mantle;
+}
+
+/* ---------- dnd ----------------------------------------------- */
+
+.widget-dnd {
+    background: @card;
+    border-radius: @r-round;
+    margin: 0 0 12px 0;
+    padding: 7px 9px 7px 16px;
+}
+
+.widget-dnd label {
+    font-family: "Marko One";
+    font-size: 13px;
+    color: @ink-body;
+    margin-right: 8px;
+    text-shadow: none;
+}
+
+.widget-dnd switch {
+    background: alpha(@surface, 0.95);
+    border: none;
+    border-radius: @r-round;
+    box-shadow: none;
+    margin-left: 8px;
+    min-width: 48px;
+    min-height: 26px;
+    padding: 4px;
+}
+
+.widget-dnd switch:hover {
+    background: alpha(@surface, 1);
+}
+
+.widget-dnd switch:checked {
+    background: @accent-time;
+}
+
+.widget-dnd switch slider {
+    background: @text;
+    border-radius: @r-round;
+    min-width: 18px;
+    min-height: 18px;
+    margin: 0;
+}
+
+.widget-dnd switch:checked slider {
+    background: @mantle;
+}
+
+/* ==============================================================
+   notification card
+   ============================================================== */
 
 .notification-row {
-  transition: all 200ms ease;
-  outline: none;
-  margin-bottom: 4px;
-  margin-right: 13px;
-  margin-top: 8px;
-  border-radius: 80px;
+    background: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
 }
 
-.control-center .notification-row:focus,
-.control-center .notification-row:hover {
-	opacity: 1;
-	background: transparent;
+.notification-row:focus {
+    background: transparent;
 }
 
-.notification-row:focus .notification,
-.notification-row:hover .notification {
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.5);
-  border: 0px solid @accent;
-  background: @current-line;
+.notification-row .notification-background {
+    background: @card;
+    border: 1px solid @hairline;
+    border-radius: @r-card;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+    margin: 0 0 8px 0;
+    padding: 0;
+    transition: background-color 180ms @ease, border-color 180ms @ease;
 }
 
-.control-center .notification {
-  box-shadow: none;
+.notification-row .notification-background:hover {
+    background: alpha(@surface, 0.46);
+    border-color: @card-edge;
 }
 
-.control-center .notification-row {
-	opacity: 0.5;
-	margin: -5px;
+/* the card itself carries the urgency accent as a thin inset bar */
+.notification-row .notification-background .notification {
+    background: transparent;
+    border: none;
+    border-radius: @r-card;
+    box-shadow: none;
+    padding: 0;
 }
 
-.notification {
-  transition: all 200ms ease;
-  border-radius: 8px;
-  margin: 12px 7px 0px 7px;
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.5);
-  padding: 0;
+.notification-row .notification-background .notification.normal {
+    box-shadow: inset 3px 0 0 0 @blue;
 }
 
-/* Uncomment to enable specific urgency colors
-.low {
-  background: yellow;
-  padding: 6px;
-  border-radius: 12px;
+.notification-row .notification-background .notification.low {
+    box-shadow: inset 3px 0 0 0 @pink;
 }
-.normal {
-  background: green;
-  padding: 6px;
-  border-radius: 12px;
-}
-.critical {
-  background: red;
-  padding: 6px;
-  border-radius: 12px;
-}
-*/
 
-.notification-content {
-  background: transparent;
-  padding: 6px;
-  border-radius: 8px;
+.notification-row .notification-background .notification.critical {
+    box-shadow: inset 3px 0 0 0 @red;
 }
+
+/* ---------- default action (the whole clickable body) --------- */
+
+.notification-row .notification-background .notification .notification-default-action {
+    background: transparent;
+    border: none;
+    border-radius: @r-card;
+    box-shadow: none;
+    color: @text;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+}
+
+.notification-row .notification-background .notification .notification-default-action:hover {
+    background: transparent;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content {
+    background: transparent;
+    border-radius: @r-card;
+    padding: 14px 16px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box label {
+    /* GTK 4 sets opacity 50% on these for some reason */
+    filter: none;
+}
+
+/* ---------- text ---------------------------------------------- */
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
+    font-family: "Noto Sans";
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: @ink-strong;
+    background: transparent;
+    text-shadow: none;
+}
+
+.notification.critical .notification-default-action .notification-content .text-box .summary {
+    color: @red;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body {
+    font-family: "Noto Sans";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: @ink-body;
+    background: transparent;
+    text-shadow: none;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
+    font-family: "Noto Sans";
+    font-size: 12px;
+    font-weight: 700;
+    color: @ink-muted;
+    background: transparent;
+    text-shadow: none;
+    margin-right: 28px;
+}
+
+/* ---------- images -------------------------------------------- */
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .image {
+    -gtk-icon-filter: none;
+    -gtk-icon-size: 32px;
+    border-radius: 10px;
+    margin: 0 14px 0 0;
+    padding: 0;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .app-icon {
+    -gtk-icon-filter: none;
+    -gtk-icon-size: 16px;
+    -gtk-icon-shadow: none;
+    margin: 0 10px 0 0;
+    padding: 0;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .body-image {
+    -gtk-icon-filter: none;
+    background-color: transparent;
+    border-radius: @r-card;
+    margin-top: 6px;
+}
+
+/* ---------- progress (timeout bar) ---------------------------- */
+
+.notification-row .notification-background .notification .notification-default-action .notification-content progressbar {
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    margin-top: 8px;
+    min-height: 3px;
+}
+
+.notification.normal progressbar { background-color: @blue; }
+.notification.low progressbar    { background-color: @pink; }
+.notification.critical progressbar { background-color: @red; }
+
+/* ---------- alt actions -------------------------------------- */
+
+.notification-row .notification-background .notification .notification-alt-actions {
+    background: none;
+    border: none;
+    padding: 0 10px 12px 10px;
+}
+
+.notification-row .notification-background .notification .notification-action {
+    margin: 0 6px 0 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.notification-row .notification-background .notification .notification-action > button {
+    background: @wash;
+    border: 1px solid transparent;
+    border-radius: @r-round;
+    color: @accent-media;
+    font-family: "Noto Sans";
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 18px;
+    transition: background-color 180ms @ease, color 180ms @ease;
+}
+
+.notification-row .notification-background .notification .notification-action > button:hover {
+    background: @accent-media;
+    color: @mantle;
+    border-color: @accent-media;
+}
+
+.notification-row .notification-background .notification .notification-action > button:active {
+    background: alpha(@accent-media, 0.7);
+    color: @mantle;
+}
+
+.notification-row .notification-background .notification .notification-action > button:disabled {
+    background: transparent;
+    color: @surface;
+    border-color: transparent;
+}
+
+/* ---------- close button ------------------------------------- */
 
 .close-button {
-  background: @current-line;
-  color: @foreground;
-  text-shadow: none;
-  padding: 0;
-  border-radius: 100%;
-  margin-top: 17px;
-  margin-right: 10px;
-  box-shadow: none;
-  border: none;
-  min-width: 24px;
-  min-height: 24px;
+    background: transparent;
+    border: none;
+    border-radius: @r-round;
+    box-shadow: none;
+    color: @ink-muted;
+    font-size: 15px;
+    margin: 8px;
+    min-width: 26px;
+    min-height: 26px;
+    padding: 0;
+    text-shadow: none;
+    transition: background-color 180ms @ease, color 180ms @ease;
 }
 
 .close-button:hover {
-  box-shadow: none;
-  background: @comment;
-  transition: all 0.15s ease-in-out;
-  border: none;
+    background: @wash;
+    border: 1px solid @card-edge;
+    color: @text;
 }
 
-.notification-default-action,
-.notification-action {
-  padding: 4px;
-  margin: 0;
-  box-shadow: none;
-  background: @current-line;
-  border: 2px solid @accent;
-  color: @foreground;
+.close-button:active {
+    background: @accent-time;
+    color: @mantle;
 }
 
-.notification-default-action:hover,
-.notification-action:hover {
-  -gtk-icon-effect: none;
-  background: @current-line;
+/* ==============================================================
+   grouped notifications
+   ============================================================== */
+
+.notification-group {
+    background: @card;
+    border: 1px solid @hairline;
+    border-radius: @r-card;
+    margin: 0 0 8px 0;
+    padding: 0;
+    transition: opacity 200ms @ease;
 }
 
-.notification-default-action {
-  border-radius: 8px;
+.notification-group:focus {
+    background: @card;
 }
 
-/* When alternative actions are visible */
-.notification-default-action:not(:only-child) {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+.notification-group .notification-group-buttons,
+.notification-group .notification-group-headers {
+    margin: 0 14px;
+    color: @text;
 }
 
-.notification-action {
-  border-radius: 0px;
-  border-top: none;
-  border-right: none;
+.notification-group .notification-group-headers {
+    padding: 10px 0;
 }
 
-/* add bottom border radius to eliminate clipping */
-.notification-action:first-child {
-  border-bottom-left-radius: 8px;
+.notification-group .notification-group-headers .notification-group-icon {
+    color: @accent-media;
+    -gtk-icon-size: 16px;
 }
 
-.notification-action:last-child {
-  border-bottom-right-radius: 8px;
-  border-right: 1px solid @accent;
+.notification-group .notification-group-headers .notification-group-header {
+    font-family: "Marko One";
+    font-size: 12px;
+    color: @ink-body;
+    letter-spacing: 1px;
 }
 
-.image {
+.notification-group .notification-group-close-button .close-button {
+    margin: 4px 8px;
 }
 
-.body-image {
-  margin-top: 6px;
-  background-color: @foreground;
-  border-radius: 8px;
+.notification-group.collapsed:not-expanded {
+    opacity: 0.45;
 }
 
-.summary {
-  font-size: 16px;
-  font-weight: bold;
-  background: transparent;
-  color: @foreground;
-  text-shadow: none;
+/* Rows inside a group are one visual unit: no per-row card chrome.
+   `.notification-group-buttons` is what the stack of `.notification-row`
+   sits in — give it spacing so rows breathe and the stack reads as
+   separate entries instead of one overlapped blob. */
+.notification-group .notification-group-buttons {
+    padding: 0 0 10px 0;
 }
 
-.time {
-  font-size: 16px;
-  font-weight: bold;
-  background: transparent;
-  color: @foreground;
-  text-shadow: none;
-  margin-right: 18px;
+.notification-group .notification-row {
+    padding: 0;
+    margin: 0;
 }
 
-.body {
-  font-size: 15px;
-  font-weight: normal;
-  background: transparent;
-  color: @foreground;
-  text-shadow: none;
+.notification-group .notification-row .notification-background {
+    background: transparent;
+    border: none;
+    border-radius: @r-card;
+    box-shadow: none;
+    margin: 6px 8px;
+    padding: 0;
 }
 
-/* The "Notifications" and "Do Not Disturb" text widget */
-.top-action-title {
-  color: @foreground;
-  text-shadow: none;
+.notification-group .notification-row .notification-background .notification {
+    border-radius: @r-card;
 }
 
-.control-center-clear-all {
-  color: @foreground;
-  text-shadow: none;
-  background: @background;
-  border: 2px solid @accent;
-  box-shadow: none;
-  border-radius: 8px;
+/* The stack keeps only the last row's body visible; make sure the
+   hidden rows don't leak their urgency accent bar either. */
+.notification-group.collapsed .notification-row:not(:last-child) .notification,
+.notification-group.collapsed .notification-row:not(:last-child) progressbar {
+    box-shadow: none;
 }
 
-.control-center-clear-all:hover {
-  background: @background;
+.notification-group .notification-row .notification-background .notification .notification-default-action .notification-content {
+    padding: 10px 12px;
 }
 
-.control-center-dnd {
-  border-radius: 8px;
-  background: @background;
-  border: 1px solid @accent;
-  box-shadow: none;
+/* a hairline between stacked rows keeps them legible */
+.notification-group .notification-row:not(:last-child) .notification-background {
+    border-bottom: 1px solid @hairline;
+    border-radius: @r-card @r-card 0 0;
 }
 
-.control-center-dnd:checked {
-  background: @accent;
+/* no per-row close inside a group; the header owns it */
+.notification-group .notification-row .close-button {
+    display: none;
 }
 
-.control-center-dnd slider {
-  background: @background;
-  border-radius: 8px;
+/* ==============================================================
+   scrollbar
+   ============================================================== */
+
+::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
 }
 
-.control-center {
-  background: @background-alpha;
-  border-radius: 10px;
-  background-clip: border-box;
-  padding: 4px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
-			  0 2px 6px 2px rgba(0, 0, 0, 0.3);
-  color: @foreground;
-  border: 2px solid @accent;
+::-webkit-scrollbar-thumb {
+    background: alpha(@surface, 0.9);
+    border-radius: 3px;
 }
 
-.control-center-list {
-  background: transparent;
-}
-
-.floating-notifications {
-  background: transparent;
-}
-
-/* Window behind control center and on all other monitors */
-.blank-window {
-  background: transparent;
-}
-
-/*** Widgets ***/
-
-/* Title widget */
-.widget-title {
-  margin: 8px;
-  font-size: 1.5rem;
-}
-.widget-title > button {
-  font-size: initial;
-  color: @foreground;
-  text-shadow: none;
-  background: @background;
-  border: 2px solid @accent;
-  box-shadow: none;
-  border-radius: 8px;
-}
-.widget-title > button:hover {
-  background: @background;
-}
-
-/* DND widget */
-.widget-dnd {
-  margin: 8px;
-  font-size: 1.1rem;
-}
-.widget-dnd > switch {
-  font-size: initial;
-  border-radius: 8px;
-  background: @background;
-  border: 1px solid @accent;
-  box-shadow: none;
-}
-.widget-dnd > switch:checked {
-  background: @accent;
-}
-.widget-dnd > switch slider {
-  background: @background;
-  border-radius: 8px;
-  border: 1px solid @foreground;
-}
-
-/* Label widget */
-.widget-label {
-  margin: 8px;
-}
-.widget-label > label {
-  font-size: 1.1rem;
-}
-
-/* Mpris widget */
-.widget-mpris {
-  /* The parent to all players */
-}
-.widget-mpris-player {
-  padding: 8px;
-  margin: 8px;
-  background-color: @background;
-  border-radius: 8px;
-  border: 2px solid @accent;
-  color: @foreground;
-}
-.widget-mpris-title {
-  font-weight: bold;
-  font-size: 1.25rem;
-}
-.widget-mpris-subtitle {
-  font-size: 1.1rem;
+::-webkit-scrollbar-thumb:hover {
+    background: @subtext;
 }

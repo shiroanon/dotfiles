@@ -1,49 +1,42 @@
-desc: Low Pass Filter
-author: @thepbone
-
-freq:55<10,10000,1>Cut-off frequency
-qFactor:2<0.01,10,0.1>Q factor
+desc:Stereo Rotator LPF
+slider1:0<-180,180,1>Rotation
+slider2:500<20,20000,1>Cutoff
+slider3:0.7<0.1,10,0.1>Q
 
 @init
-freq = 55;
-qFactor = 2.00;
-
-function LowPassFilter_Set(frequency qFactor)(
-    x = (frequency * 2.f * $PI) / srate;
-    sinX = sin(x);
-    y = sinX / (qFactor * 2.f);
-    cosX = cos(x);
-    z = (1.f - cosX) / 2.f;
-    
-    _a0 = y + 1.f;
-    _a1 = cosX * -2.f;
-    _a2 = 1.f - y;
-    _b0 = z;   
-    _b1 = 1.f - cosX;   
-    _b2 = z;   
-    
-    this.y_2 = 0; this.y_1 = 0; this.x_2 = 0; this.x_1 = 0;
-    this.b0 = _b0 / _a0;
-    this.b1 = _b1 / _a0;
-    this.b2 = _b2 / _a0;
-    this.a1 = -_a1 / _a0;
-    this.a2 = -_a2 / _a0;
-);
-
-function LowPassFilter_ProcessSample(sample)(
-    out = sample * this.b0 + this.x_1 * this.b1 + this.x_2 * this.b2 + this.y_1 * this.a1 + this.y_2 * this.a2;
-    this.y_2 = this.y_1;
-    this.y_1 = out;
-    this.x_2 = this.x_1;
-    this.x_1 = sample;
-    
-    out;
-);
-
-lowpass.LowPassFilter_Set(freq, qFactor);
+lx1=lx2=ly1=ly2=rx1=rx2=ry1=ry2=0;
 
 @sample
-avg = lowpass.LowPassFilter_ProcessSample(spl0 + spl1);
-spl0 += avg;
-spl1 += avg;
+// Recalculate everything here since @slider is forbidden
+ang = slider1 * 0.01745329;
+c_c = cos(ang); 
+s_c = sin(ang);
 
+fx = (slider2 * 6.283185) / srate;
+fs = sin(fx); 
+fc = cos(fx); 
+fa = fs / (2 * slider3);
+fa0 = 1 + fa;
+
+b0 = ((1 - fc) / 2) / fa0;
+b1 = (1 - fc) / fa0;
+b2 = ((1 - fc) / 2) / fa0;
+ma1 = (-2 * fc) / fa0;
+ma2 = (1 - fa) / fa0;
+
+// Stereo Rotation
+iL = spl0;
+iR = spl1;
+rL = iL * c_c - iR * s_c;
+rR = iL * s_c + iR * c_c;
+
+// LPF Left
+oL = rL * b0 + lx1 * b1 + lx2 * b2 - ly1 * ma1 - ly2 * ma2;
+lx2 = lx1; lx1 = rL; ly2 = ly1; ly1 = oL;
+
+// LPF Right
+oR = rR * b0 + rx1 * b1 + rx2 * b2 - ry1 * ma1 - ry2 * ma2;
+rx2 = rx1; rx1 = rR; ry2 = ry1; ry1 = oR;
+
+spl0 = oL;
+spl1 = oR;

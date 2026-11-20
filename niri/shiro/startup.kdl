@@ -1,7 +1,7 @@
-// This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
-spawn-at-startup "swww-daemon"
-// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
-spawn-at-startup "kitty" "--class" "scratchpad"
+spawn-at-startup "awww-daemon"
 spawn-sh-at-startup "/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-sh-at-startup "wlsunset -t 4500 -T 6500  -S '06:30' -s '19:00'"
+spawn-sh-at-startup "aw-qt"
+spawn-sh-at-startup "/home/shiro/temp/aw-watcher-window-wayland/target/release/aw-watcher-window-wayland"
+spawn-sh-at-startup "gnome-keyring-daemon --start --components=secrets,pkcs11,ssh"

@@ -1,5 +1,0 @@
-workspace "⚡"
-window-rule{
-    match app-id="dev.zed.Zed"
-    open-on-workspace "⚡"
-}

@@ -10,14 +10,14 @@ slider14:0.01<0,0.5>Modulation depth
 slider20:0<-24,24>Gain (dB)
 // ____________________________________
 @init
-slider1=0.2;
-slider4=2;
+slider1=0.16;
+slider4=2.20;
 slider5=2;
-slider8=30;
-slider9=20;
-slider12=10;
-slider14=0.01;
-slider20=0;
+slider8=22.74;
+slider9=32.11;
+slider12=15.47;
+slider14=0.28;
+slider20=10.27;
 // _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 function HAD()(
   HAD_NORM = 0.5; // 1/sqrt2 * 1/sqrt2

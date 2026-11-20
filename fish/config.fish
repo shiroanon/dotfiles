@@ -7,6 +7,7 @@ if status is-interactive
     alias arch="uwufetch"
     alias ghrc ="gh repo create"
     atuin init fish | source
+    alias gf="hermes --skill girlfriend"
 end
 function frg
     # The 'fzf' command with 'ripgrep' as the engine
