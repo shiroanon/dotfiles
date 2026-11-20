@@ -1,52 +1,91 @@
-/Antigravity
-/Vencord
-/audacity
-/bluetuith
-/dconf
-/discord
-/fcitx/dbus
-/fcitx5
-/gh
-/go/telemetry/local
-/google-chrome
-/gtk-3.0
-/gtk-4.0
-/htop
-/ibus/bus
-/keepassxc
-/mozc
-/nchat
-/nwg-look
-/pulse
-/qt5ct
-/torbrowser
-/waypaper
-/xfce4/xfconf/xfce-perchannel-xml
-/xsettingsd
-/zen
-/lazygit
+# ─────────────────────────────────────────────────────────────
+# Secrets & credentials — never commit these
+# ─────────────────────────────────────────────────────────────
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.gpg
+id_rsa*
+id_ed25519*
+credentials*
+secrets*
+token*
+
+# Generated state / databases (not real config files)
+*.sqlite
+*.sqlite-*
+*.db
+*.jsonlz4
+*.lz4
+*.bin
+
+# ─────────────────────────────────────────────────────────────
+# Browsers — profiles hold saved logins, cookies and history
+# ─────────────────────────────────────────────────────────────
+/mozilla/
+/google-chrome/
+/google-chrome-for-testing/
+/google-chrome-headless/
+/chromium/
+/chromium-headless/
+/microsoft-edge-canary/
+/BraveSoftware/
+/zen/
+/torbrowser/
+/Vencord/
+/browser-harness/
+/citron/
+/citron team/
+/Proton/
+
+# ─────────────────────────────────────────────────────────────
+# Chat, accounts & password managers
+# ─────────────────────────────────────────────────────────────
+/discord/
+/nchat/
+/ZapZap/
+/keepassxc/
+/Bitwarden/
+/libaccounts-glib/
+/session/
+
+# ─────────────────────────────────────────────────────────────
+# App data, caches & generated state
+# ─────────────────────────────────────────────────────────────
+/Antigravity/
 /assets
+/audacity/
+/bluetuith/
+/browsh/
+/btop/
+/dconf/
+/fcitx/dbus/
+/fcitx5/
+/gtk-3.0/
+/gtk-4.0/
+/GIMP/3.0/
+/go/telemetry/local/
+/htop/
+/ibus/bus/
+/kdeconnect/
+/lazygit/
+/libreoffice/
+/lsp-plugins/
+/mozc/
+/nwg-look/
+/pulse/
+/qt5ct/
+/QtProject/
 /QtProject.conf
-/zed
-/xarchiver
-/vicinae
+/sniffnet/
+/sqlitebrowser/
 /systemd/user/graphical-session.target.wants
-/mozilla/firefox/Crash Reports
-/kdeconnect
-/btop
-/browsh
-/zed
-/GIMP/3.0
-/GIMP/3.0
-/Meltytech
-/QtProject
-/VeraCrypt
-/ZapZap
-/google-chrome-for-testing/Crash Reports
-/libreoffice/4
-/lsp-plugins
-/mozilla/firefox
-/session
-/sniffnet
-/sniffnet
-/sqlitebrowser
+/waypaper/
+/xarchiver/
+/xfce4/xfconf/xfce-perchannel-xml/
+/xsettingsd/
+/vicinae/
+/zed/
