@@ -34,6 +34,7 @@ token*
 /microsoft-edge-canary/
 /BraveSoftware/
 /zen/
+/net.imput.helium/
 /torbrowser/
 /Vencord/
 /browser-harness/
@@ -58,6 +59,12 @@ token*
 /Antigravity/
 /assets
 /audacity/
+/browser-harness/
+/Code/
+/colab-cli/
+/configstore/
+/HyperFrames/
+/opencode/
 /bluetuith/
 /browsh/
 /btop/
